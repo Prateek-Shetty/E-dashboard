@@ -2,7 +2,7 @@ import Nav from './components/Nav';
 import './App.css';
 import { BrowserRouter,Routes,Route} from 'react-router-dom';
 import Footer from './components/Footer';
-
+import SignUp from './components/SignUp';
 function App() {
   return (
     <div className="App">
@@ -15,6 +15,7 @@ function App() {
         <Route path="/logout" element={<h1>Logout Page</h1>} />
         <Route path="/profile" element={<h1>Profile Page</h1>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
 
       
