@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useNavigate } from 'react';
 
 const SignUp = () => {
     // Hooks should be defined directly inside the component
@@ -6,16 +6,28 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('User Data:', { name, email, password });
-        // Add your signup logic here
+    const collectData =async () => {
+        console.log(name, email, password);
+        const result=await fetch('http://localhost:3000/register', {
+            method: 'POST',
+            body: JSON.stringify({ name, email, password }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        result=await result.json();
+        if (result) {
+           navigate('/login'); 
+        } else {
+            alert('Error registering user');
+        }
+       
     };
 
     return (
         <div className="signup">
             <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={collectData}>
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
                     <input
